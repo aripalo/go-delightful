@@ -9,16 +9,20 @@
   </h1>
   <div>
 
-  Go library providing delightful & pretty command-line output with colors and emojis. Think _output_ not _logging_.
+  Go library providing delightful & pretty command-line output with colors and emojis.
 
   </div>
   <hr/>
   <br/>
 </div>
 
-Somewhat opinionated as well, since I've built this for my own CLI tools such as [`vegas-credentials`](https://github.com/aripalo/vegas-credentials). **This tool is NOT meant as structured logger for web applications and such. Instead it only focuses on enabling nice command-line user experience.** Think more of _output_ not _log messages_.
+**This tool is NOT meant to be used as structured logger for web applications and such. Instead it only focuses on enabling nice command-line user experience: Think _informational output_ not _log messages_.**
 
-Main features:
+It's inteded for Command-Line applications that want to interact with humans and provide delightful user experience with coloured output, emojis and such. An example could be [`vegas-credentials`](https://github.com/aripalo/vegas-credentials) which utilizes this library. This tool is also somewhat opinionated and does not follow conventional application loggers.
+
+
+## Features
+- By default prints to tty/stderr
 - Coloured output by default
 - Emoji prefixes (customizable)
 - Message structure: `emoji` + `namespace` + `...args`
@@ -27,7 +31,6 @@ Main features:
   - `NO_COLOR`
   - `<APP-NAME>_NO_COLOR`
   - `TERM=dumb`
-- Defaults to text output but supports JSON as well (useful when pairing with CLIs that support `--output=text|json`)
 
 
 
@@ -69,4 +72,15 @@ func main() {
   // print success message
   output.Success("💪", "foo", "nicely done")
 }
+```
+
+
+## Actual Command Output
+
+```go
+output.Output()
+```
+
+```go
+output.OutputJSON()
 ```
