@@ -1,8 +1,22 @@
-# go-delightful
+<div align="center">
+	<br/>
+	<br/>
+	<img width="200" src="assets/go-delightful.svg" alt="Got" />
+  <h1>
+  <code>go-delightful</code>
+  <br/>
+  <span>output with colors and emojis</span>
+  </h1>
+  <div>
 
-Delightful CLI output with colors and emojis. Somewhat opinionated as well, since I've built this for my own CLI tools such as [`vegas-credentials`](https://github.com/aripalo/vegas-credentials).
+  Go library providing delightful & pretty command-line output with colors and emojis. Think _output_ not _logging_.
 
-**This tool is NOT meant as structured logger for web applications and such. Instead it only focuses on enabling nice command-line user experience.** Think more of _output_ not _log messages_.
+  </div>
+  <hr/>
+  <br/>
+</div>
+
+Somewhat opinionated as well, since I've built this for my own CLI tools such as [`vegas-credentials`](https://github.com/aripalo/vegas-credentials). **This tool is NOT meant as structured logger for web applications and such. Instead it only focuses on enabling nice command-line user experience.** Think more of _output_ not _log messages_.
 
 Main features:
 - Coloured output by default
