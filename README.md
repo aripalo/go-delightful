@@ -92,9 +92,9 @@ func main() {
   // Print a "banner" showing your app name and other (optional) info.
   // Banner optional info only printed if in verbose mode.
   message.Banner(delightful.BannerOptions{
-    version: "v0.0.1",
-    url:     "example.com",
-    extra:   "some extra info, keep it short",
+		Version: "v0.0.1",
+		URL:     "example.com",
+		Extra:   "some extra info, keep it short",
   })
 
   // Print "title" message in purple.

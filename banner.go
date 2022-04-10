@@ -11,9 +11,11 @@ type BannerOptions struct {
 func (m *Message) Banner(b BannerOptions) {
 	var args []string
 
+	args = append(args, m.appName, "\n")
+
 	if b.Version != "" {
 		args = append(args, "version: ", b.Version, "\n")
 	}
 
-	fmt.Fprint(m.target, m.appName, "\n", args)
+	fmt.Fprint(m.target, args)
 }
