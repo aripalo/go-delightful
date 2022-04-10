@@ -14,7 +14,9 @@ Go library designed for command-line applications interacting with humans, provi
 
 <br/>
 
-✅ &nbsp;**This tool is for _Informational messaging_ for the _end-user_**, written into `stderr`.
+✅ &nbsp;**This tool is for _Informational messaging_ for the _end-user_**
+
+Messages are written into standard error stream (`stderr`) to avoid polluting the actual program output in standard output stream (`stdout`): Hence the messages are intended for end-user communication during the program runtime, not for the actual parseable result output.
 
 > _Not everything on stderr is an error though. For example, you can use `curl` to download a file but the progress output is on stderr. This allows you to redirect the stdout while still seeing the progress._
 >
