@@ -1,6 +1,9 @@
 package delightful
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type BannerOptions struct {
 	Version string
@@ -17,5 +20,5 @@ func (m *Message) Banner(b BannerOptions) {
 		args = append(args, "version: ", b.Version, "\n")
 	}
 
-	fmt.Fprint(m.target, args)
+	fmt.Fprint(m.target, strings.Join(args, ""))
 }
