@@ -15,7 +15,7 @@ type BannerOptions struct {
 }
 
 func (m *Message) Banner(b BannerOptions) {
-	m.HR("=")
+	m.printHr("=")
 	fmt.Fprintln(m.target, colors.Banner(m.appName))
 
 	if m.verboseMode {
@@ -33,10 +33,17 @@ func (m *Message) Banner(b BannerOptions) {
 		}
 	}
 
-	m.HR("-")
+	m.printHr("-")
 }
 
-func (m *Message) HR(char string) {
-	hr := ruler.Generate(char)
-	fmt.Fprintln(m.target, colors.Debug(hr))
+func (m *Message) printHr(char string) {
+	if m.verboseMode {
+		hr := ruler.Generate(char)
+		fmt.Fprintln(m.target, colors.Debug(hr))
+	}
+}
+
+// HorizontalRuler prints equals (=) characters as wide as the terminal.
+func (m *Message) HorizontalRuler() {
+	m.printHr("=")
 }

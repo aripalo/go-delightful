@@ -120,6 +120,14 @@ func main() {
 
   // Print "failure" message in red.
   message.Failure("❌", "galaxies exploded")
+
+  // Print horizontal ruler.
+  // Visible only on verbose mode.
+  message.HorizontalRuler()
+
+  // Finally you often should print some actual command output into standard
+  // output stream.
+  fmt.Println("My actual output to stdout")
 }
 ```
 
