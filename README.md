@@ -93,7 +93,8 @@ func main() {
   // Banner optional info only printed if in verbose mode.
   message.Banner(delightful.BannerOptions{
 		Version: "v0.0.1",
-		URL:     "example.com",
+		Website: "example.com",
+    Command: "foo",
 		Extra:   "Some extra info, let's keep it short!",
   })
 

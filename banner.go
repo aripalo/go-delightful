@@ -10,7 +10,7 @@ import (
 type BannerOptions struct {
 	Command string
 	Version string
-	URL     string
+	Website string
 	Extra   string
 }
 
@@ -22,14 +22,14 @@ func (m *Message) Banner(b BannerOptions) {
 		if b.Version != "" {
 			fmt.Fprintln(m.target, colors.Debug(fmt.Sprintf("version: %s", b.Version)))
 		}
-		if b.URL != "" {
-			fmt.Fprintln(m.target, colors.Debug(fmt.Sprintf("version: %s", b.URL)))
+		if b.Website != "" {
+			fmt.Fprintln(m.target, colors.Debug(fmt.Sprintf("website:     %s", b.Website)))
 		}
 		if b.Command != "" {
 			fmt.Fprintln(m.target, colors.Debug(fmt.Sprintf("command: %s", b.Command)))
 		}
 		if b.Extra != "" {
-			fmt.Fprintln(m.target, colors.Debug(b.Extra))
+			fmt.Fprintln(m.target, fmt.Sprintf("\n%s", colors.Debug(b.Extra)))
 		}
 	}
 
