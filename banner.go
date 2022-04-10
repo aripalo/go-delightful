@@ -17,7 +17,15 @@ func (m *Message) Banner(b BannerOptions) {
 	args = append(args, m.appName, "\n")
 
 	if b.Version != "" {
-		args = append(args, "version: ", b.Version, "\n")
+		args = append(args, "Version: ", b.Version, "\n")
+	}
+
+	if b.URL != "" {
+		args = append(args, "URL: ", b.URL, "\n")
+	}
+
+	if b.Extra != "" {
+		args = append(args, b.Extra, "\n")
 	}
 
 	fmt.Fprint(m.target, strings.Join(args, ""))
