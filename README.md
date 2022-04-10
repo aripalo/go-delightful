@@ -37,16 +37,20 @@ Messages are written into standard error stream (`stderr`) to avoid polluting th
 <br/>
 
 ## Features
-- By default prints to Standard Error stream
-- Coloured output by default
+- Prints to Standard Error stream (`stderr`)
+- Subprocess friendly: Tries to access the `tty` and print to its `stderr` (can be disabled)
 - Message structure:
   1. `emoji` (optional)
   2. `namespace` (optional)
   3. `...args` (often just a single string)
-- Respectful of user environment and disables fancy output if one of below set:
-  - `NO_COLOR`
-  - `<APP-NAME>_NO_COLOR`
+- Coloured output by default with emojis
+- Respectful of user environment and disables color output with emojis if one of below set:
+  - `NO_COLOR` (to something other than `false` or `0`)
+  - `<APP-NAME>_NO_COLOR` (to something other than `false` or `0`)
   - `TERM=dumb`
+- Allows user to control verbosity by configuring environment variables:
+  - `VERBOSITY` (to something other than `false` or `0`)
+  - `<APP-NAME>_VERBOSITY` (to something other than `false` or `0`)
 
 <br/>
 
