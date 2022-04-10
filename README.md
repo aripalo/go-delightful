@@ -94,31 +94,31 @@ func main() {
   message.Banner(delightful.BannerOptions{
 		Version: "v0.0.1",
 		URL:     "example.com",
-		Extra:   "some extra info, keep it short",
+		Extra:   "Some extra info, let's keep it short!",
   })
 
   // Print "title" message in purple.
-  message.Title("🔥", "foo", "hello world")
+  message.Title("🔥", "hello world")
 
   // Print "debug" message in dark gray.
   // Only printed if in verbose mode.
-  message.Debug("⚙️", "foo", "This is only visible if in verbose mode")
+  message.Debug("⚙️", "This is only visible if in verbose mode")
 
   // Print "info" message in gray.
-  message.Info("", "foo", "FYI")// passing empty string for emoji disables the emoji prefix
+  message.Info("", "FYI")// passing empty string for emoji disables it
 
   // Print "prompt" message in cyan.
   // Does not actually read input, only shows the "question".
-  message.Prompt("🖌", "foo", "please input maybe:")
+  message.Prompt("🖌", "please input maybe:")
 
   // Print "success" message in green.
-  message.Success("💪", "foo", "nicely done")
+  message.Success("💪", "nicely done")
 
   // Print "warning" message in yellow.
-  message.Warning("⚠️", "bar", "something didn't go as planned, but it might be okay...")
+  message.Warning("⚠️", "something didn't go as planned, but it might be okay...")
 
   // Print "failure" message in red.
-  message.Failure("❌", "bar", "galaxies exploded")
+  message.Failure("❌", "galaxies exploded")
 }
 ```
 

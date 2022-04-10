@@ -6,25 +6,37 @@ import (
 	"os"
 	"strings"
 
+	"github.com/gookit/color"
 	changecase "github.com/ku/go-change-case"
 )
-
-type Format string
 
 type Message struct {
 	appName     string
 	colorMode   bool
+	emojiMode   bool
 	verboseMode bool
 	target      io.Writer
 }
 
 // New returns a new Output instance with default configuration
 func New(appName string) Message {
+
+	// set up initial color mode and disable color output if needed
+	colorMode := allowColor(appName)
+	if !colorMode {
+		color.Disable()
+	}
+
+	// choose target io.Writer
+	target := tryGetTty()
+	color.SetOutput(target)
+
+	// return an instance
 	return Message{
 		appName:     appName,
-		colorMode:   allowColor(appName),
+		colorMode:   colorMode,
 		verboseMode: enableVerboseMode(appName),
-		target:      tryGetTty(),
+		target:      target,
 	}
 }
 
@@ -35,8 +47,17 @@ func New(appName string) Message {
 func (m *Message) SetColorMode(colorMode bool) {
 	if allowColor(m.appName) {
 		m.colorMode = colorMode
-	} else {
-		m.colorMode = false
+		if !m.colorMode {
+			color.Disable()
+		}
+	}
+}
+
+// SetEmojiMode controls if emojis are printed with the messages:
+// Even when colors are enabled!
+func (m *Message) SetEmojiMode(emojiMode bool) {
+	if allowEmoji(m.appName) {
+		m.emojiMode = emojiMode
 	}
 }
 
@@ -47,10 +68,11 @@ func (m *Message) SetVerboseMode(verboseMode bool) {
 	m.verboseMode = verboseMode
 }
 
-// SetMessageTarget overrides the default output target (tty or stderr).
+// SetMessageTarget overrides the default output target (tty/stderr).
 // Mainly used for testing.
 func (m *Message) SetMessageTarget(target io.Writer) {
 	m.target = target
+	color.SetOutput(m.target)
 }
 
 // allowColor is responsible for ensuring that user configuration is respected
@@ -72,6 +94,28 @@ func allowColor(appName string) bool {
 	}
 
 	// Otherwise default to colors being enabled
+	return true
+}
+
+// allowEmoji enables separate control of emoji outout
+func allowEmoji(appName string) bool {
+
+	// if colors are disabled, then disable emojis too
+	if !allowColor(appName) {
+		return false
+	}
+
+	// Check if NO_EMOJI
+	if isEnvVarSetOrTruthy("NO_EMOJI") {
+		return false
+	}
+
+	// Check if app-specific _NO_EMOJI set https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46
+	if isEnvVarSetOrTruthy(formatPrefixedEnvVar(appName, "NO_EMOJI")) {
+		return false
+	}
+
+	// Otherwise default to emojis being enabled
 	return true
 }
 
