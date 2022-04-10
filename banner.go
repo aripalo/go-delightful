@@ -16,20 +16,20 @@ type BannerOptions struct {
 
 func (m *Message) Banner(b BannerOptions) {
 	m.printHr("=")
-	fmt.Fprintln(m.target, colors.Banner(m.appName))
+	colors.Banner.Println(m.appName)
 
 	if m.verboseMode {
 		if b.Version != "" {
-			fmt.Fprintln(m.target, colors.Debug(fmt.Sprintf("version: %s", b.Version)))
+			colors.Debug.Println(fmt.Sprintf("version: %s", b.Version))
 		}
 		if b.Website != "" {
-			fmt.Fprintln(m.target, colors.Debug(fmt.Sprintf("website:     %s", b.Website)))
+			colors.Debug.Println(fmt.Sprintf("website:     %s", b.Website))
 		}
 		if b.Command != "" {
-			fmt.Fprintln(m.target, colors.Debug(fmt.Sprintf("command: %s", b.Command)))
+			colors.Debug.Println(fmt.Sprintf("command: %s", b.Command))
 		}
 		if b.Extra != "" {
-			fmt.Fprintln(m.target, fmt.Sprintf("\n%s", colors.Debug(b.Extra)))
+			colors.Debug.Println("\n%s", b.Extra)
 		}
 	}
 
@@ -39,7 +39,7 @@ func (m *Message) Banner(b BannerOptions) {
 func (m *Message) printHr(char string) {
 	if m.verboseMode {
 		hr := ruler.Generate(char)
-		fmt.Fprintln(m.target, colors.Debug(hr))
+		colors.Debug.Println(hr)
 	}
 }
 
