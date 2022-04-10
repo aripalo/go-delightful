@@ -1,0 +1,120 @@
+package delightful
+
+import (
+	"fmt"
+	"io"
+	"os"
+	"strings"
+
+	changecase "github.com/ku/go-change-case"
+)
+
+type Format string
+
+type Message struct {
+	appName     string
+	colorMode   bool
+	verboseMode bool
+	target      io.Writer
+}
+
+// New returns a new Output instance with default configuration
+func New(appName string) Message {
+	return Message{
+		appName:     appName,
+		colorMode:   allowColor(appName),
+		verboseMode: enableVerboseMode(appName),
+		target:      tryGetTty(),
+	}
+}
+
+// SetColorMode controls if the messages are printed with emojis and colors.
+// ColorMode is enabled (true) by default.
+// May not have any effect if user has disabled color & emojis via environment variable.
+// Or if user's terminal environment does not support colors.
+func (m *Message) SetColorMode(colorMode bool) {
+	if allowColor(m.appName) {
+		m.colorMode = colorMode
+	} else {
+		m.colorMode = false
+	}
+}
+
+// SetVerboseMode controls additional debug messages.
+// Verbose output is disabled by default unless user has set
+// VERBOSE or <APP_NAME>_VERBOSE environment variables.
+func (m *Message) SetVerboseMode(verboseMode bool) {
+	m.verboseMode = verboseMode
+}
+
+// SetMessageTarget overrides the default output target (tty or stderr).
+// Mainly used for testing.
+func (m *Message) SetMessageTarget(target io.Writer) {
+	m.target = target
+}
+
+// allowColor is responsible for ensuring that user configuration is respected
+// by checking if user environment dictates coloured output should not be used.
+func allowColor(appName string) bool {
+	// Check if NO_COLOR set https://no-color.org/
+	if isEnvVarSetOrTruthy("NO_COLOR") {
+		return false
+	}
+
+	// Check if app-specific _NO_COLOR set https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46
+	if isEnvVarSetOrTruthy(formatPrefixedEnvVar(appName, "NO_COLOR")) {
+		return false
+	}
+
+	// Check if $TERM=dumb https://unix.stackexchange.com/a/43951
+	if os.Getenv("TERM") == "dumb" {
+		return false
+	}
+
+	// Otherwise default to colors being enabled
+	return true
+}
+
+// enableVerboseMode sets the initial verbosity setting by looking at the user
+// environment for specific variables.
+func enableVerboseMode(appName string) bool {
+	// Check if NO_COLOR set https://no-color.org/
+	if isEnvVarSetOrTruthy("VERBOSE") {
+		return true
+	}
+
+	// Check if app-specific _NO_COLOR set https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46
+	if isEnvVarSetOrTruthy(formatPrefixedEnvVar(appName, "VERBOSE")) {
+		return true
+	}
+
+	return false
+}
+
+func isEnvVarSetOrTruthy(envVar string) bool {
+	value, set := os.LookupEnv(envVar)
+
+	// if it's not set at all
+	if !set {
+		return false
+	}
+
+	// if it has truthy value
+	lowerValue := strings.ToLower(value)
+	if lowerValue == "true" || lowerValue == "1" {
+		return true
+	}
+
+	// for unset or "falsy value"
+	return false
+}
+
+func formatPrefixedEnvVar(prefix string, envVar string) string {
+	return fmt.Sprintf(
+		"%s_%s",
+		changecase.Constant(strings.TrimSpace(prefix)),
+		changecase.Constant(strings.TrimSpace(envVar)),
+	)
+}
+
+// TODO allow disable tty
