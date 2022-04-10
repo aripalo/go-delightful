@@ -35,6 +35,7 @@ func New(appName string) Message {
 	return Message{
 		appName:     appName,
 		colorMode:   colorMode,
+		emojiMode:   allowEmoji(appName),
 		verboseMode: enableVerboseMode(appName),
 		target:      target,
 	}
