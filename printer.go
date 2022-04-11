@@ -33,9 +33,10 @@ func (m *Message) formatWithEmoji(em emoji.Emoji, rendered string) string {
 }
 
 func (m *Message) Title(em emoji.Emoji, rendered string) {
-	if !m.silentMode {
-		colors.Title.Println(m.formatWithEmoji(em, rendered))
+	if m.silentMode {
+		return
 	}
+	colors.Title.Println(m.formatWithEmoji(em, rendered))
 }
 
 func (m *Message) Debug(em emoji.Emoji, rendered string) {
@@ -45,9 +46,10 @@ func (m *Message) Debug(em emoji.Emoji, rendered string) {
 }
 
 func (m *Message) Info(em emoji.Emoji, rendered string) {
-	if !m.silentMode {
-		colors.Info.Println(m.formatWithEmoji(em, rendered))
+	if m.silentMode {
+		return
 	}
+	colors.Info.Println(m.formatWithEmoji(em, rendered))
 }
 
 func (m *Message) Prompt(em emoji.Emoji, rendered string) {
@@ -55,15 +57,17 @@ func (m *Message) Prompt(em emoji.Emoji, rendered string) {
 }
 
 func (m *Message) Success(em emoji.Emoji, rendered string) {
-	if !m.silentMode {
-		colors.Success.Println(m.formatWithEmoji(em, rendered))
+	if m.silentMode {
+		return
 	}
+	colors.Success.Println(m.formatWithEmoji(em, rendered))
 }
 
 func (m *Message) Warning(em emoji.Emoji, rendered string) {
-	if !m.silentMode {
-		colors.Warning.Println(m.formatWithEmoji(em, rendered))
+	if m.silentMode {
+		return
 	}
+	colors.Warning.Println(m.formatWithEmoji(em, rendered))
 }
 
 func (m *Message) Failure(em emoji.Emoji, rendered string) {

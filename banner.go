@@ -15,6 +15,10 @@ type BannerOptions struct {
 }
 
 func (m *Message) Banner(b BannerOptions) {
+	if m.silentMode {
+		return
+	}
+
 	m.printHr("=")
 	colors.Banner.Println(m.appName)
 
