@@ -62,7 +62,6 @@ Messages are written into standard error stream (`stderr`) to avoid polluting th
 
 <br/>
 
-~~For example usage, see [`vegas-credentials`](https://github.com/aripalo/vegas-credentials) which utilizes this library.~~ (Not yet implemented!)
 
 <br/>
 
@@ -75,6 +74,8 @@ go get github.com/aripalo/go-delightful
 <br/>
 
 ## Usage
+
+~~For example usage, see [`vegas-credentials`](https://github.com/aripalo/vegas-credentials) which utilizes this library.~~ (Not yet implemented!)
 
 ### Getting started
 
