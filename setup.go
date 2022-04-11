@@ -11,6 +11,8 @@ import (
 	changecase "github.com/ku/go-change-case"
 )
 
+// Message struct holds the configurationg for messaging and you can call
+// various methods on it that print messages.
 type Message struct {
 	appName     string
 	colorMode   bool
