@@ -64,10 +64,13 @@ func (m *Message) SetColorMode(colorMode bool) {
 }
 
 // SetEmojiMode controls if emojis are printed with the messages:
-// Even when colors are enabled!
+// Can be disabled even when colors are enabled, but not enabled
+// when colors are disabled.
 func (m *Message) SetEmojiMode(emojiMode bool) {
 	if allowEmoji(m.appName) {
-		m.emojiMode = emojiMode
+		if m.colorMode {
+			m.emojiMode = emojiMode
+		}
 	}
 }
 
