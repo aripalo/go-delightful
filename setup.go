@@ -148,12 +148,10 @@ func allowEmoji(appName string) bool {
 // enableVerboseMode sets the initial verbosity setting by looking at the user
 // environment for specific variables.
 func enableVerboseMode(appName string) bool {
-	// Check if NO_COLOR set https://no-color.org/
 	if isEnvVarSetOrTruthy("VERBOSE") {
 		return true
 	}
 
-	// Check if app-specific _NO_COLOR set https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46
 	if isEnvVarSetOrTruthy(formatPrefixedEnvVar(appName, "VERBOSE")) {
 		return true
 	}
@@ -164,19 +162,19 @@ func enableVerboseMode(appName string) bool {
 func isEnvVarSetOrTruthy(envVar string) bool {
 	value, set := os.LookupEnv(envVar)
 
-	// if it's not set at all
+	// check if not set at all
 	if !set {
 		return false
 	}
 
-	// if it has truthy value
+	// check if falsy value
 	lowerValue := strings.ToLower(value)
-	if lowerValue == "true" || lowerValue == "1" {
-		return true
+	if lowerValue == "false" || lowerValue == "0" {
+		return false
 	}
 
-	// for unset or "falsy value"
-	return false
+	// is set (or has truthy value)
+	return true
 }
 
 func formatPrefixedEnvVar(prefix string, envVar string) string {
