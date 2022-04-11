@@ -20,6 +20,9 @@
 
 Go library designed for command-line applications interacting with humans, providing delightful end-user experience for _informational messaging_ via colourful, lightly structured messages with emojis.
 
+https://user-images.githubusercontent.com/679146/162841193-f4be9109-907b-457d-8d3c-0702a7243e80.mp4
+
+
 <br/>
 
 ✅ &nbsp;**This tool is for _Informational messaging_ for the _end-user_ while the command is running:**
