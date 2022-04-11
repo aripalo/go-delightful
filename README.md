@@ -90,11 +90,30 @@ import (
 
 	"github.com/aripalo/go-delightful"
 	"github.com/enescakir/emoji"
+	flag "github.com/spf13/pflag"
 )
 
 func main() {
 
+	// Initialize
 	message := delightful.New("greet")
+
+	// Some setup with spf13/pflag, not really important for this example
+	var silentMode bool
+	var verboseMode bool
+	var noEmoji bool
+	var noColor bool
+	flag.BoolVarP(&silentMode, "silent", "s", false, "silent mode (hides everything except prompt/failure messages)")
+	flag.BoolVar(&verboseMode, "verbose", false, "verbose output (show everything, overrides silent mode)")
+	flag.BoolVar(&noEmoji, "no-emoji", false, "disable emojis")
+	flag.BoolVar(&noColor, "no-color", false, "disable colors and emojis")
+	flag.Parse()
+
+	// Configure how messaging works based on above CLI flags
+	message.SetSilentMode(silentMode)
+	message.SetVerboseMode(verboseMode)
+	message.SetEmojiMode(!noEmoji)
+	message.SetColorMode(!noColor)
 
 	// Print a "banner" showing your app name and other (optional) info.
 	// Banner optional info only printed if in verbose mode.
@@ -113,8 +132,7 @@ func main() {
 	message.Debug("⚙️", "This is only visible if in verbose mode")
 
 	// Print "info" message in gray.
-	// Passing empty string for emoji disables it.
-	message.Info("", "FYI: Just something for for your information.")
+	message.Info("", "FYI: Just something for for your information.") // passing empty string for emoji disables it
 
 	// Print "prompt" message in cyan.
 	// Does not actually read input, only shows the "question".
@@ -155,8 +173,14 @@ func main() {
 }
 ```
 
-Now running `VERBOSE=true go run main.go` yields to following:
+Now running `go run main.go --verbose` yields to following:
 ![Example Output](/assets/example-output.png)
+
+You may also want to try out:
+- `go run main.go`
+- `go run main.go --silent`
+- `go run main.go --no-emoji`
+- `go run main.go --no-color`
 
 <br/>
 
