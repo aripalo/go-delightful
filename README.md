@@ -129,14 +129,14 @@ func main() {
 
 	// Print "debug" message in dark gray.
 	// Only printed if in verbose mode.
-	message.Debug("⚙️", "This is only visible if in verbose mode")
+	message.Debug("", "This is only visible if in verbose mode") // passing empty string for emoji disables it
 
 	// Print "info" message in gray.
-	message.Info("", "Just something for your information.") // passing empty string for emoji disables it
+	message.Info("ℹ️", "Just something for your information.")
 
 	// Print "prompt" message in cyan.
 	// Does not actually read input, only shows the "question".
-	message.Prompt("🖋️", "Input your name:")
+	message.Prompt("🙋", "Input your name:")
 
 	// Actually query the name via stdin
 	reader := bufio.NewReader(os.Stdin)
