@@ -1,4 +1,4 @@
-🚧 🚧 🚧  **Work-in-Progress** See [`v1` Roadmap](https://github.com/aripalo/go-delightful/projects/1); Breaking changes may occur during `v0` development.
+🚧 🚧 🚧  **Work-in-Progress**: See [`v1` Roadmap](https://github.com/aripalo/go-delightful/projects/1); Breaking changes may occur during `v0` development.
 
 ---
 
