@@ -3,7 +3,7 @@ package colors
 import "github.com/gookit/color"
 
 var (
-	Banner  = color.New(color.FgMagenta, color.OpBold)
+	Banner  = color.New(color.FgLightMagenta, color.OpBold)
 	Debug   = color.New(color.FgGray)
 	Info    = color.New(color.FgWhite)
 	Title   = color.New(color.FgLightBlue, color.OpBold)
