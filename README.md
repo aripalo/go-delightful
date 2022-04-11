@@ -77,7 +77,7 @@ go get github.com/aripalo/go-delightful
 
 ## Usage
 
-### Basics
+### Getting started
 
 Here are some of the basic methods:
 ```go
@@ -98,14 +98,14 @@ func main() {
 	// Gray message line
 	message.Infoln("ℹ️", "Good to know")
 
-  // Cyan message (without newline)
-  message.Prompt("📝", "Provide input")
+	// Cyan message (without newline)
+	message.Prompt("📝", "Provide input")
 
-  // Green message line
-  message.Successln("✅", "Great Success")
+	// Green message line
+	message.Successln("✅", "Great Success")
 
-  // Red message line
-  message.Failureln("❌", "Error")
+	// Red message line
+	message.Failureln("❌", "Error")
 }
 ```
 
