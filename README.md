@@ -38,7 +38,7 @@ Messages are written into standard error stream (`stderr`) to avoid polluting th
 
 ❌ &nbsp;**This tool is _NOT_ for:**
 
-- _Log Events_ for tracing/debugging the program execution<br/>→ Use logging frameworks such as [zap](https://github.com/uber-go/zap), [zerolog](https://github.com/rs/zerolog) or [logrus](https://github.com/sirupsen/logrus) for more advanced application logging. You still should ensure they write to `stderr`.
+- _Log Events_ for tracing/debugging the program execution<br/>→ Use logging frameworks such as [zap](https://github.com/uber-go/zap), [zerolog](https://github.com/rs/zerolog) or [logrus](https://github.com/sirupsen/logrus) for more advanced application logging. You still should ensure they write to `stderr` (or to a rotated log file or something).
 
 - _Command Output_ (i.e. the result) written into `stdout` (which could be redirected to a file for example)<br/>→ Use [`fmt.Print`](https://pkg.go.dev/fmt#Print) for that which defaults to writing into standard output.
 
