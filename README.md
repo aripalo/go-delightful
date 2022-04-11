@@ -51,8 +51,8 @@ Messages are written into standard error stream (`stderr`) to avoid polluting th
 - **Coloured output with emoji prefixes** by default
 
 - **Subprocess friendly**: Tries to access the `tty` and print directly into it:
-  - Useful when your building a "plugin program" that some other program executes, for example the original purpose for this was to support [AWS `credential_process`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sourcing-external.html).
-  - If `tty` not available, prints to Standard Error stream (`stderr`)
+  - Useful if you're building a "plugin program" that some other program executes (and you can not control how it redirects the `stderr` of your program); For example the original purpose for this was to support [AWS `credential_process`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sourcing-external.html) where this happens some times.
+  - In case `tty` not available, prints to Standard Error stream (`stderr`).
   - Configurable: You may assign any `io.Writer` as the output target.
 
 - **Respectful of environment**, end-user can set environment variables to:
