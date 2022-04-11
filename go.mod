@@ -9,6 +9,7 @@ require (
 )
 
 require (
+	github.com/enescakir/emoji v1.0.0 // indirect
 	github.com/gookit/color v1.5.0 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/stretchr/testify v1.7.1 // indirect

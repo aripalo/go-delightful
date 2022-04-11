@@ -131,3 +131,10 @@ func main() {
 }
 ```
 
+
+## Emojis
+
+Unfortunately not all command-line environments are capable of rendering all emojis as they should be rendered. To ensure best possible compatibility with different systems and fonts:
+- Use non-gendered emojis
+- Default skintone emojis
+- Avoid complex group emojis such as 👨‍👩‍👧‍👧
