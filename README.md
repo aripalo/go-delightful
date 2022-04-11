@@ -47,10 +47,15 @@ Messages are written into standard error stream (`stderr`) to avoid polluting th
 <br/>
 
 ## Features
-- Coloured output by default with emojis
-- Prints to Standard Error stream (`stderr`)
-- Subprocess friendly: Tries to access the `tty` and print to its `stderr` (can be disabled)
-- Respectful of user environment: User can disable colors/emojis, enable silent mode or verbose mode by setting various environment variables.
+
+- **Coloured output with emoji prefixes** by default
+- **Prints to Standard Error** stream (`stderr`)
+- **Subprocess friendly**: Tries to access the `tty` and print to its `stderr` (can be disabled)
+- **Respectful of environment**, end-user can set environment variables to:
+  - disable color
+  - disable emoji
+  - enable silent mode
+  - verbose mode
 
 <br/>
 
