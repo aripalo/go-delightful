@@ -17,32 +17,32 @@ func TestDeterminePad(t *testing.T) {
 		{
 			name:     "pile of poop",
 			input:    emoji.PileOfPoo,
-			expected: 1,
+			expected: 0,
 		},
 		{
 			name:     "airplane departure",
 			input:    emoji.AirplaneDeparture,
-			expected: 1,
+			expected: 0,
 		},
 		{
 			name:     "checkbox with check",
 			input:    emoji.CheckBoxWithCheck,
-			expected: 2,
+			expected: 1,
 		},
 		{
 			name:     "double rune: gear",
 			input:    emoji.Gear,
-			expected: 2,
+			expected: 1,
 		},
 		{
 			name:     "man with red hair",
 			input:    emoji.Emoji(emoji.Man.Tone(emoji.Default)),
-			expected: 1,
+			expected: 0,
 		},
 		{
 			name:     "woman with white hair",
 			input:    emoji.Emoji(emoji.WomanGesturingNo.Tone(emoji.Default)),
-			expected: 1,
+			expected: 0,
 		},
 	}
 
@@ -65,32 +65,32 @@ func TestPadRight(t *testing.T) {
 		{
 			name:     "pile of poop",
 			input:    emoji.PileOfPoo,
-			expected: "💩 ",
+			expected: "💩",
 		},
 		{
 			name:     "airplane departure",
 			input:    emoji.AirplaneDeparture,
-			expected: "🛫 ",
+			expected: "🛫",
 		},
 		{
 			name:     "checkbox with check",
 			input:    emoji.CheckBoxWithCheck,
-			expected: "☑️  ",
+			expected: "☑️ ",
 		},
 		{
 			name:     "double rune: gear",
 			input:    emoji.Gear,
-			expected: "⚙️  ",
+			expected: "⚙️ ",
 		},
 		{
 			name:     "man with red hair",
 			input:    emoji.Emoji(emoji.Man.Tone(emoji.Default)),
-			expected: "👨 ",
+			expected: "👨",
 		},
 		{
 			name:     "woman with white hair",
 			input:    emoji.Emoji(emoji.WomanGesturingNo.Tone(emoji.Default)),
-			expected: "🙅‍♀️ ",
+			expected: "🙅‍♀️",
 		},
 	}
 

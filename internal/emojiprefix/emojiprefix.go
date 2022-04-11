@@ -8,7 +8,7 @@ import (
 )
 
 // defaultPadding determines the amount of pad characters
-const maxPrefixRuneLength int = 3
+const maxPrefixRuneLength int = 2
 
 // determinePad resolves the correct amount of characters needed for
 // padding to achieve (mostly) vertically matching "columns" of emoji prefixes.

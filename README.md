@@ -132,7 +132,7 @@ func main() {
 	message.Debug("⚙️", "This is only visible if in verbose mode")
 
 	// Print "info" message in gray.
-	message.Info("", "FYI: Just something for for your information.") // passing empty string for emoji disables it
+	message.Info("", "Just something for your information.") // passing empty string for emoji disables it
 
 	// Print "prompt" message in cyan.
 	// Does not actually read input, only shows the "question".
@@ -152,7 +152,7 @@ func main() {
 
 		// Unfortunately many environments print gendered/toned emojis incorrectly
 		// so you might want to use github.com/enescakir/emoji to assign "neutral" emoji
-		facepalm := emoji.Emoji(emoji.PersonFacepalming.String())
+		facepalm := emoji.Emoji(emoji.PersonFacepalming.Tone(emoji.Default))
 
 		// Print "warning" message in yellow.
 		message.Warning(facepalm, "Really? Your name has a poop emoji? You're being silly...")
