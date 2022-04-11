@@ -31,15 +31,15 @@ func padRight(prefix emoji.Emoji) string {
 
 // Format is responsible for prefixing a string with emoji.
 // Empty string for emoji prefix means the emoji prefix is ignored.
-// Boolean "enable" controls if the emoji prefix is set or not.
-func Format(enable bool, prefix emoji.Emoji, rendered string) string {
+// Boolean "emojiMode" controls if the emoji prefix is set or not.
+func Format(emojiMode bool, prefix emoji.Emoji, rendered string) string {
 	// empty emoji means we'll skip it
 	if string(prefix) == "" {
 		return rendered
 	}
 
 	// format the string with emoji prefix if emoji mode is on
-	if enable {
+	if emojiMode {
 		return fmt.Sprintf("%s %s", padRight(prefix), rendered)
 	}
 

@@ -103,3 +103,44 @@ func TestPadRight(t *testing.T) {
 		})
 	}
 }
+
+func TestFormat(t *testing.T) {
+	tests := []struct {
+		name      string
+		emojiMode bool
+		prefix    emoji.Emoji
+		input     string
+		expected  string
+	}{
+		{
+			name:      "empty prefix",
+			emojiMode: true,
+			prefix:    "",
+			input:     "message",
+			expected:  "message",
+		},
+		{
+			name:      "emojiMode enabled",
+			emojiMode: true,
+			prefix:    "✅",
+			input:     "message",
+			expected:  "✅ message",
+		},
+		{
+			name:      "emojiMode disabled",
+			emojiMode: false,
+			prefix:    "✅",
+			input:     "message",
+			expected:  "message",
+		},
+	}
+
+	for index, test := range tests {
+
+		name := fmt.Sprintf("case #%d - %s", index, test.name)
+		t.Run(name, func(t *testing.T) {
+			actual := Format(test.emojiMode, test.prefix, test.input)
+			assert.Equal(t, test.expected, actual)
+		})
+	}
+}
