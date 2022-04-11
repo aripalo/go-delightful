@@ -50,9 +50,8 @@ Messages are written into standard error stream (`stderr`) to avoid polluting th
 - Prints to Standard Error stream (`stderr`)
 - Subprocess friendly: Tries to access the `tty` and print to its `stderr` (can be disabled)
 - Message structure:
-  1. `emoji` (optional)
-  2. `namespace` (optional)
-  3. `...args` (often just a single string)
+  1. `emoji` (optional, pass empty string to ignore it)
+  2. `...args` (often just a single string)
 - Coloured output by default with emojis
 - Respectful of user environment and disables color output with emojis if one of below set:
   - `NO_COLOR` (to something other than `false` or `0`)
