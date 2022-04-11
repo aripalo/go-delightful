@@ -77,6 +77,8 @@ go get github.com/aripalo/go-delightful
 
 ~~For example usage, see [`vegas-credentials`](https://github.com/aripalo/vegas-credentials) which utilizes this library.~~ (Not yet implemented!)
 
+<br/>
+
 ### Getting started
 
 Here are some of the basic methods:
@@ -108,6 +110,8 @@ func main() {
 	message.Failureln("❌", "Error")
 }
 ```
+
+<br/>
 
 ### Real world'ish example
 
@@ -207,27 +211,29 @@ func main() {
 }
 ```
 
-#### Example Output
+<br/>
+
+### Example Output
 
 Results of running above code with `go run main.go` and various flags:
 
-##### No flags
+#### No flags
 ![default](/assets/screenshots/default.png)
 
-##### `--no-emoji`
+#### `--no-emoji`
 ![emoji disabled](/assets/screenshots/no-emoji.png)
 
 ... or with `NO_EMOJI` or `<APP_NAME>_NO_EMOJI` environment variables set (to something other than `false` or `0`).
 
-##### `--no-color`
+#### `--no-color`
 ![color disabled](/assets/screenshots/no-color.png)
 
 ... or with `NO_COLOR` or `<APP_NAME>_NO_COLOR` environment variables set (to something other than `false` or `0`).
 
-##### `--silent`
+#### `--silent`
 ![silent mode](/assets/screenshots/silent.png)
 
-##### `--verbose`
+#### `--verbose`
 ![verbose mode](/assets/screenshots/verbose.png)
 
 ... or with `VERBOSE` or `<APP_NAME>_VERBOSE` environment variables set (to something other than `false` or `0`).
