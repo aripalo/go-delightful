@@ -137,7 +137,7 @@ func main() {
 		facepalm := emoji.Emoji(emoji.PersonFacepalming.String())
 
 		// Print "warning" message in yellow.
-		message.Warning(facepalm, "Really? Your name has a poop emoji? You're being a wise-ass...")
+		message.Warning(facepalm, "Really? Your name has a poop emoji? You're being silly...")
 	} else {
 		// Print "success" message in green.
 		message.Success("✅", "Name received!")
