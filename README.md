@@ -113,7 +113,7 @@ func main() {
 	message.Debug("⚙️", "This is only visible if in verbose mode")
 
 	// Print "info" message in gray.
-  // Passing empty string for emoji disables it.
+	// Passing empty string for emoji disables it.
 	message.Info("", "FYI: Just something for for your information.")
 
 	// Print "prompt" message in cyan.
