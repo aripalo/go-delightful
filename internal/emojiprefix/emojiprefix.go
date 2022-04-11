@@ -14,7 +14,7 @@ const defaultPadding int = 3
 // padding to achieve (mostly) vertically matching "columns" of emoji prefixes.
 func determinePad(prefix emoji.Emoji) int {
 	runeCount := utf8.RuneCountInString(string(prefix))
-	padding := defaultPadding - (runeCount * 2)
+	padding := defaultPadding - runeCount
 	if padding < 0 {
 		return 0
 	}
