@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/aripalo/go-delightful/pkg/ttyaccess"
 	"github.com/gookit/color"
 	changecase "github.com/ku/go-change-case"
 )
@@ -29,7 +30,7 @@ func New(appName string) Message {
 	}
 
 	// choose target io.Writer
-	target := tryGetTty()
+	target := ttyaccess.GetWithFallback()
 	color.SetOutput(target)
 
 	// set up initial verbose mode
