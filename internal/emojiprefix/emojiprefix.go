@@ -2,28 +2,31 @@ package emojiprefix
 
 import (
 	"fmt"
-	"unicode/utf8"
 
 	"github.com/enescakir/emoji"
+	"github.com/mattn/go-runewidth"
 )
 
 // defaultPadding determines the amount of pad characters
-const defaultPadding int = 3
+const maxPrefixRuneLength int = 3
 
 // determinePad resolves the correct amount of characters needed for
 // padding to achieve (mostly) vertically matching "columns" of emoji prefixes.
 func determinePad(prefix emoji.Emoji) int {
-	runeCount := utf8.RuneCountInString(string(prefix))
-	padding := defaultPadding - runeCount
-	if padding < 0 {
-		return 0
-	}
-	return padding
+	width := runewidth.StringWidth(prefix.String())
+	padSize := maxPrefixRuneLength - width
+	return padSize
 }
 
 // padRight pads string with spaces.
 func padRight(prefix emoji.Emoji) string {
-	return fmt.Sprintf("%-*s", determinePad(prefix), string(prefix))
+	padSize := determinePad(prefix)
+	result := prefix.String()
+
+	for i := 0; i < padSize; i++ {
+		result = result + string(rune(' '))
+	}
+	return result
 }
 
 // Format is responsible for prefixing a string with emoji.

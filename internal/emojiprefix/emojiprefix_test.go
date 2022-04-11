@@ -15,34 +15,34 @@ func TestDeterminePad(t *testing.T) {
 		expected int
 	}{
 		{
-			name:     "single rune: pile of poop",
+			name:     "pile of poop",
 			input:    emoji.PileOfPoo,
-			expected: 2,
-		},
-		{
-			name:     "single rune: airplane departure",
-			input:    emoji.AirplaneDeparture,
-			expected: 2,
-		},
-		{
-			name:     "double rune: checkbox with check",
-			input:    emoji.CheckBoxWithCheck,
 			expected: 1,
+		},
+		{
+			name:     "airplane departure",
+			input:    emoji.AirplaneDeparture,
+			expected: 1,
+		},
+		{
+			name:     "checkbox with check",
+			input:    emoji.CheckBoxWithCheck,
+			expected: 2,
 		},
 		{
 			name:     "double rune: gear",
 			input:    emoji.Gear,
+			expected: 2,
+		},
+		{
+			name:     "man with red hair",
+			input:    emoji.Emoji(emoji.Man.Tone(emoji.Default)),
 			expected: 1,
 		},
 		{
-			name:     "triple rune: man with red hair",
-			input:    emoji.Emoji(emoji.ManWithRedHair.String()),
-			expected: 0,
-		},
-		{
-			name:     "triple rune: woman with white hair",
-			input:    emoji.Emoji(emoji.WomanWithWhiteHair.String()),
-			expected: 0,
+			name:     "woman with white hair",
+			input:    emoji.Emoji(emoji.WomanGesturingNo.Tone(emoji.Default)),
+			expected: 1,
 		},
 	}
 
@@ -51,6 +51,54 @@ func TestDeterminePad(t *testing.T) {
 		name := fmt.Sprintf("case #%d - %s", index, test.name)
 		t.Run(name, func(t *testing.T) {
 			actual := determinePad(test.input)
+			assert.Equal(t, test.expected, actual)
+		})
+	}
+}
+
+func TestPadRight(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    emoji.Emoji
+		expected string
+	}{
+		{
+			name:     "pile of poop",
+			input:    emoji.PileOfPoo,
+			expected: "💩 ",
+		},
+		{
+			name:     "airplane departure",
+			input:    emoji.AirplaneDeparture,
+			expected: "🛫 ",
+		},
+		{
+			name:     "checkbox with check",
+			input:    emoji.CheckBoxWithCheck,
+			expected: "☑️  ",
+		},
+		{
+			name:     "double rune: gear",
+			input:    emoji.Gear,
+			expected: "⚙️  ",
+		},
+		{
+			name:     "man with red hair",
+			input:    emoji.Emoji(emoji.Man.Tone(emoji.Default)),
+			expected: "👨 ",
+		},
+		{
+			name:     "woman with white hair",
+			input:    emoji.Emoji(emoji.WomanGesturingNo.Tone(emoji.Default)),
+			expected: "🙅‍♀️ ",
+		},
+	}
+
+	for index, test := range tests {
+
+		name := fmt.Sprintf("case #%d - %s", index, test.name)
+		t.Run(name, func(t *testing.T) {
+			actual := padRight(test.input)
 			assert.Equal(t, test.expected, actual)
 		})
 	}
