@@ -6,6 +6,8 @@ import (
 	"github.com/aripalo/go-delightful/colors"
 )
 
+// BannerOptions enables passing optional/additional information into the banner
+// output. Values given here are only printed if Verbose Mode is active.
 type BannerOptions struct {
 	Command string
 	Version string
@@ -13,6 +15,10 @@ type BannerOptions struct {
 	Extra   string
 }
 
+// Banner prints information about the current application/command.
+// Application name shown in magenta color, other info in gray/white.
+// No-op if Silent Mode active.
+// BannerOptions printed only if Verbose Mode active.
 func (m *Message) Banner(b BannerOptions) {
 	if m.silentMode {
 		return
