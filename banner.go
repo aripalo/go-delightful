@@ -29,7 +29,7 @@ func (m *Message) Banner(b BannerOptions) {
 			colors.Debug.Println(fmt.Sprintf("command: %s", colors.Info.Render(b.Command)))
 		}
 		if b.Extra != "" {
-			colors.Debug.Println(b.Extra)
+			colors.Info.Println(fmt.Sprintf("\n%s", b.Extra))
 		}
 	}
 
