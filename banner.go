@@ -23,13 +23,13 @@ func (m *Message) Banner(b BannerOptions) {
 			colors.Debug.Println(fmt.Sprintf("version: %s", b.Version))
 		}
 		if b.Website != "" {
-			colors.Debug.Println(fmt.Sprintf("website:     %s", b.Website))
+			colors.Debug.Println(fmt.Sprintf("website: %s", b.Website))
 		}
 		if b.Command != "" {
 			colors.Debug.Println(fmt.Sprintf("command: %s", b.Command))
 		}
 		if b.Extra != "" {
-			colors.Debug.Println("\n%s", b.Extra)
+			colors.Debug.Println(b.Extra)
 		}
 	}
 
