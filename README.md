@@ -158,6 +158,7 @@ func main() {
 Now running `VERBOSE=true go run main.go` yields to following:
 ![Example Output](/assets/example-output.png)
 
+<br/>
 
 ## Emojis
 
@@ -170,6 +171,8 @@ Sometimes using [`enescakir/emoji`](https://github.com/enescakir/emoji) can make
 ```go
 emoji.Emoji(emoji.PersonFacepalming.String())
 ```
+
+<br/>
 
 ## Configuration
 
