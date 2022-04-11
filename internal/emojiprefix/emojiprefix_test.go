@@ -17,41 +17,31 @@ func TestDeterminePad(t *testing.T) {
 		{
 			name:     "single rune: pile of poop",
 			input:    emoji.PileOfPoo,
-			expected: 3,
+			expected: 2,
 		},
 		{
 			name:     "single rune: airplane departure",
 			input:    emoji.AirplaneDeparture,
-			expected: 3,
+			expected: 2,
 		},
 		{
 			name:     "double rune: checkbox with check",
 			input:    emoji.CheckBoxWithCheck,
-			expected: 2,
+			expected: 1,
 		},
 		{
 			name:     "double rune: gear",
 			input:    emoji.Gear,
-			expected: 2,
+			expected: 1,
 		},
 		{
 			name:     "triple rune: man with red hair",
 			input:    emoji.Emoji(emoji.ManWithRedHair.String()),
-			expected: 1,
+			expected: 0,
 		},
 		{
 			name:     "triple rune: woman with white hair",
 			input:    emoji.Emoji(emoji.WomanWithWhiteHair.String()),
-			expected: 1,
-		},
-		{
-			name:     "quadruple rune: woman gesturing ok",
-			input:    emoji.Emoji(emoji.WomanGesturingOk.String()),
-			expected: 0,
-		},
-		{
-			name:     "quadruple rune: rainbow flag",
-			input:    emoji.Emoji(emoji.RainbowFlag.String()),
 			expected: 0,
 		},
 	}

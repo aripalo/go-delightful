@@ -8,7 +8,7 @@ import (
 )
 
 // defaultPadding determines the amount of pad characters
-const defaultPadding int = 4
+const defaultPadding int = 3
 
 // determinePad resolves the correct amount of characters needed for
 // padding to achieve (mostly) vertically matching "columns" of emoji prefixes.
