@@ -3,13 +3,12 @@ package colors
 import "github.com/gookit/color"
 
 var (
-	Bold    = color.Bold
 	Banner  = color.New(color.FgMagenta, color.OpBold)
-	Debug   = color.Gray
-	Info    = color.White
+	Debug   = color.New(color.Gray)
+	Info    = color.New(color.Gray, color.OpBold)
 	Title   = color.New(color.FgLightBlue, color.OpBold)
-	Warning = color.Yellow
-	Failure = color.Red
-	Success = color.Green
+	Warning = color.New(color.Yellow, color.OpBold)
+	Failure = color.New(color.FgRed, color.OpBold)
+	Success = color.New(color.FgGreen, color.OpBold)
 	Prompt  = color.New(color.FgCyan, color.OpBold)
 )
