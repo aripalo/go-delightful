@@ -175,13 +175,15 @@ func main() {
 
 ### Example Output
 
-|           Command           |                    Example Output                   |
-| :-------------------------- | :-------------------------------------------------- |
-| `go run main.go`            | ![default](/assets/screenshots/default.png)         |
-| `go run main.go --no-emoji` | ![emoji disabled](/assets/screenshots/no-emoji.png) |
-| `go run main.go --no-color` | ![color disabled](/assets/screenshots/no-color.png) |
-| `go run main.go --silent`   | ![silent mode](/assets/screenshots/silent.png)      |
-| `go run main.go --verbose`  | ![verbose mode](/assets/screenshots/verbose.png)    |
+Results of running above code with `go run main.go` and various flags:
+
+|     Flag     |                   Example Output                    |
+| :----------- | :-------------------------------------------------- |
+|              | ![default](/assets/screenshots/default.png)         |
+| `--no-emoji` | ![emoji disabled](/assets/screenshots/no-emoji.png) |
+| `--no-color` | ![color disabled](/assets/screenshots/no-color.png) |
+| `--silent`   | ![silent mode](/assets/screenshots/silent.png)      |
+| `--verbose`  | ![verbose mode](/assets/screenshots/verbose.png)    |
 
 <br/>
 
