@@ -63,7 +63,7 @@ Messages are written into standard error stream (`stderr`) to avoid polluting th
 
 <br/>
 
-For example usage, see [`vegas-credentials`](https://github.com/aripalo/vegas-credentials) which utilizes this library.
+~~For example usage, see [`vegas-credentials`](https://github.com/aripalo/vegas-credentials) which utilizes this library.~~ (Not yet implemented!)
 
 <br/>
 
