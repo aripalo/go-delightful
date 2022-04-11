@@ -186,3 +186,5 @@ func formatPrefixedEnvVar(prefix string, envVar string) string {
 }
 
 // TODO allow disable tty
+
+// TODO handle ENV VARs when Set* Methods used
