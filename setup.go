@@ -15,6 +15,7 @@ type Message struct {
 	colorMode   bool
 	emojiMode   bool
 	verboseMode bool
+	silentMode  bool
 	target      io.Writer
 }
 
@@ -31,12 +32,16 @@ func New(appName string) Message {
 	target := tryGetTty()
 	color.SetOutput(target)
 
+	// set up initial verbose mode
+	verboseMode := enableVerboseMode(appName)
+
 	// return an instance
 	return Message{
 		appName:     appName,
 		colorMode:   colorMode,
 		emojiMode:   allowEmoji(appName),
-		verboseMode: enableVerboseMode(appName),
+		verboseMode: verboseMode,
+		silentMode:  !verboseMode,
 		target:      target,
 	}
 }
@@ -65,8 +70,21 @@ func (m *Message) SetEmojiMode(emojiMode bool) {
 // SetVerboseMode controls additional debug messages.
 // Verbose output is disabled by default unless user has set
 // VERBOSE or <APP_NAME>_VERBOSE environment variables.
+// Enabling verbose mode also disables silent mode.
 func (m *Message) SetVerboseMode(verboseMode bool) {
 	m.verboseMode = verboseMode
+	if m.verboseMode {
+		m.silentMode = false
+	}
+}
+
+// SetSilentMode controls if info/warning/success
+// messages are shown or not (i.e. silent mode).
+// Silent mode can not be enabled if verbose mode is active.
+func (m *Message) SetSilentMode(silentMode bool) {
+	if !m.verboseMode {
+		m.silentMode = silentMode
+	}
 }
 
 // SetMessageTarget overrides the default output target (tty/stderr).
