@@ -110,7 +110,7 @@ func main() {
 
   // Print "prompt" message in cyan.
   // Does not actually read input, only shows the "question".
-  message.Prompt("🖌", "please input maybe:")
+  message.Prompt("🖋️", "please input maybe:")
 
   // Print "success" message in green.
   message.Success("💪", "nicely done")
