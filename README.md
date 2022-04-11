@@ -173,6 +173,8 @@ func main() {
 }
 ```
 
+### Example Output
+
 |           Command           |                    Example Output                   |
 | :-------------------------- | :-------------------------------------------------- |
 | `go run main.go`            | ![default](/assets/screenshots/default.png)         |
