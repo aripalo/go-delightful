@@ -20,13 +20,13 @@ func (m *Message) Banner(b BannerOptions) {
 
 	if m.verboseMode {
 		if b.Version != "" {
-			colors.Debug.Println(fmt.Sprintf("version: %s", b.Version))
+			colors.Debug.Println(fmt.Sprintf("version: %s", colors.Info.Render(b.Version)))
 		}
 		if b.Website != "" {
-			colors.Debug.Println(fmt.Sprintf("website: %s", b.Website))
+			colors.Debug.Println(fmt.Sprintf("website: %s", colors.Info.Render(b.Website)))
 		}
 		if b.Command != "" {
-			colors.Debug.Println(fmt.Sprintf("command: %s", b.Command))
+			colors.Debug.Println(fmt.Sprintf("command: %s", colors.Info.Render(b.Command)))
 		}
 		if b.Extra != "" {
 			colors.Debug.Println(b.Extra)

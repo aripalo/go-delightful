@@ -6,7 +6,7 @@ var (
 	Bold    = color.Bold
 	Banner  = color.Magenta
 	Debug   = color.Gray
-	Info    = color.Gray
+	Info    = color.Gray.Light()
 	Title   = color.Blue
 	Warning = color.Yellow
 	Failure = color.Red
