@@ -166,11 +166,15 @@ Unfortunately not all command-line environments are capable of rendering all emo
 - Default skintone emojis
 - Avoid complex group emojis such as 👨‍👩‍👧‍👧
 
+Sometimes using [`enescakir/emoji`](https://github.com/enescakir/emoji) can make getting the exactly right emoji easier:
+```go
+emoji.Emoji(emoji.PersonFacepalming.String())
+```
 
-## Silent
+## Configuration
 
-TODO --silent mode
+**TODO!**
 
-only:
-- prompt
-- error
+- VERBOSE
+- SILENT
+- Set* methods
