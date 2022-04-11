@@ -173,14 +173,13 @@ func main() {
 }
 ```
 
-Now running `go run main.go --verbose` yields to following:
-![Example Output](/assets/example-output.png)
-
-You may also want to try out:
-- `go run main.go`
-- `go run main.go --silent`
-- `go run main.go --no-emoji`
-- `go run main.go --no-color`
+|           Command           |                    Example Output                   |
+| :-------------------------- | :-------------------------------------------------- |
+| `go run main.go`            | ![default](/assets/screenshots/default.png)         |
+| `go run main.go --no-emoji` | ![emoji disabled](/assets/screenshots/no-emoji.png) |
+| `go run main.go --no-color` | ![color disabled](/assets/screenshots/no-color.png) |
+| `go run main.go --silent`   | ![silent mode](/assets/screenshots/silent.png)      |
+| `go run main.go --verbose`  | ![verbose mode](/assets/screenshots/verbose.png)    |
 
 <br/>
 
