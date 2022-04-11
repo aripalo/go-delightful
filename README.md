@@ -94,7 +94,7 @@ func main() {
   message.Banner(delightful.BannerOptions{
 		Version: "v0.0.1",
 		Website: "example.com",
-    Command: "foo",
+		Command: "foo",
 		Extra:   "Some extra info, let's keep it short!",
   })
 
