@@ -258,13 +258,36 @@ Of course you may use any emoji you wish but note that they may not render as ex
 
 ## Configuration
 
-**TODO!**
+### Setting Custom Output Stream
 
-- VERBOSE
-- SILENT
-- Set* methods
+You can provide you own `io.Writer` via `SetMessageTarget` method. This can be useful for testing and for scenarios where you wish to disable the "subprocess friendliness" of writing to `tty` directly.
+
+```go
+message.SetMessageTarget(os.Stderr)
+```
+
+### Enabling Verbose Mode
+
+1. Set `VERBOSE=true` environment variable
+2. Set `<APP_NAME>_VERBOSE=true` environment variable
+3. Use `message.SetVerboseMode(true)` method<br/>(setting this to `false` has no effect if above environment variables present)
+
+### Enabling Silent Mode
+
+1. Use `message.SetSiletMode(true)` method<br/>(setting this to `true` has no effect if _Verbose Mode_ is enabled)
+
+### Disabling Color
+
+1. Set `NO_COLOR=true` environment variable
+2. Set `<APP_NAME>_NO_COLOR=true` environment variable
+3. Use `message.SetColorMode(false)` method<br/>(setting this to `true` has no effect if above environment variables present)
 
 
-## Design
+### Disabling Emoji
 
-1. Environment Variables should win
+1. Disabling Color will disable Emoji as well
+2. Set `NO_EMOJI=true` environment variable
+3. Set `<APP_NAME>_NO_EMOJI=true` environment variable
+4. Use `message.SetEmojiMode(false)` method<br/>(setting this to `true` has no effect if above environment variables present)
+
+

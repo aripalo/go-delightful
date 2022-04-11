@@ -186,7 +186,3 @@ func formatPrefixedEnvVar(prefix string, envVar string) string {
 		changecase.Constant(strings.TrimSpace(envVar)),
 	)
 }
-
-// TODO allow disable tty
-
-// TODO handle ENV VARs when Set* Methods used
