@@ -3,7 +3,7 @@ package delightful
 import (
 	"fmt"
 
-	"github.com/aripalo/go-delightful/colors"
+	"github.com/aripalo/go-delightful/internal/colors"
 )
 
 // BannerOptions enables passing optional/additional information into the banner

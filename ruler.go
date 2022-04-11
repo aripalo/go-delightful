@@ -1,7 +1,7 @@
 package delightful
 
 import (
-	"github.com/aripalo/go-delightful/colors"
+	"github.com/aripalo/go-delightful/internal/colors"
 	"github.com/aripalo/go-delightful/ruler"
 )
 
