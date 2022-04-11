@@ -138,3 +138,12 @@ Unfortunately not all command-line environments are capable of rendering all emo
 - Use non-gendered emojis
 - Default skintone emojis
 - Avoid complex group emojis such as 👨‍👩‍👧‍👧
+
+
+## Silent
+
+TODO --silent mode
+
+only:
+- prompt
+- error
