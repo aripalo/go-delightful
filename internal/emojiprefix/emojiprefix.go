@@ -8,17 +8,20 @@ import (
 )
 
 // defaultPadding determines the amount of pad characters
-const defaultPadding int = 3
+const defaultPadding int = 8
 
 // determinePad resolves the correct amount of characters needed for
 // padding to achieve (mostly) vertically matching "columns" of emoji prefixes.
 // Emojis with odd runecount seem to require a bit of special treatment.
 func determinePad(prefix emoji.Emoji) int {
 	runeCount := utf8.RuneCountInString(string(prefix))
-	if runeCount%2 != 0 {
-		return defaultPadding - 2
-	}
-	return defaultPadding
+	//if runeCount%2 != 0 {
+	//	return defaultPadding - 2
+	//}
+
+	return defaultPadding - (runeCount * 2)
+
+	//return defaultPadding
 }
 
 // padRight pads string with spaces.
