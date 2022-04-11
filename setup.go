@@ -79,9 +79,11 @@ func (m *Message) SetEmojiMode(emojiMode bool) {
 // VERBOSE or <APP_NAME>_VERBOSE environment variables.
 // Enabling verbose mode also disables silent mode.
 func (m *Message) SetVerboseMode(verboseMode bool) {
-	m.verboseMode = verboseMode
-	if m.verboseMode {
-		m.silentMode = false
+	if !enableVerboseMode(m.appName) {
+		m.verboseMode = verboseMode
+		if m.verboseMode {
+			m.silentMode = false
+		}
 	}
 }
 

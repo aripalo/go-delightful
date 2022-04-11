@@ -263,3 +263,8 @@ Of course you may use any emoji you wish but note that they may not render as ex
 - VERBOSE
 - SILENT
 - Set* methods
+
+
+## Design
+
+1. Environment Variables should win
