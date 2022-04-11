@@ -77,6 +77,40 @@ go get github.com/aripalo/go-delightful
 
 ## Usage
 
+### Basic usage
+
+Here are some of the basic methods:
+```go
+package main
+
+import (
+	"github.com/aripalo/go-delightful"
+)
+
+func main() {
+
+	// Initialize
+	message := delightful.New("demo")
+
+	// Purple message line
+	message.Titleln("👷", "Just showing things around here")
+
+	// Gray message line
+	message.Infoln("ℹ️", "Good to know")
+
+  // Cyan message (without newline)
+  message.Prompt("📝", "Provide input")
+
+  // Green message line
+  message.Successln("✅", "Great Success")
+
+  // Red message line
+  message.Failureln("❌", "Error")
+}
+```
+
+### Real world'ish example
+
 An example command-line application using `aripalo/go-delightful`:
 ```go
 package main
@@ -124,25 +158,25 @@ func main() {
 		Extra:   "Some extra info, let's keep it short!",
 	})
 
-	// Print "title" message in purple.
-	message.Title("🔥", "This is going to be lit!")
+	// Print "title" message line in purple.
+	message.Titleln("🔥", "This is going to be lit!")
 
-	// Print "debug" message in dark gray.
+	// Print "debug" message line in dark gray.
 	// Only printed if in verbose mode.
-	message.Debug("", "This is only visible if in verbose mode") // passing empty string for emoji disables it
+	message.Debugln("", "This is only visible if in verbose mode") // passing empty string for emoji disables it
 
-	// Print "info" message in gray.
-	message.Info("ℹ️", "Just something for your information.")
+	// Print "info" message line in gray.
+	message.Infoln("ℹ️", "Just something for your information.")
 
 	// Print "prompt" message in cyan.
 	// Does not actually read input, only shows the "question".
-	message.Prompt("🙋", "Input your name:")
+	message.Prompt("🙋", "Tell us Your name: ")
 
 	// Actually query the name via stdin
 	reader := bufio.NewReader(os.Stdin)
 	value, err := reader.ReadString('\n')
 	if err != nil {
-		// Print "failure" message in red.
+		// Print "failure" message line in red.
 		message.Failure("❌", "galaxies exploded")
 		log.Fatal(err)
 	}
@@ -154,11 +188,11 @@ func main() {
 		// so you might want to use github.com/enescakir/emoji to assign "neutral" emoji
 		facepalm := emoji.Emoji(emoji.PersonFacepalming.Tone(emoji.Default))
 
-		// Print "warning" message in yellow.
-		message.Warning(facepalm, "Really? Your name has a poop emoji? You're being silly...")
+		// Print "warning" message line in yellow.
+		message.Warningln(facepalm, "Really? Your name has a poop emoji? You're being silly...")
 	} else {
-		// Print "success" message in green.
-		message.Success("✅", "Name received!")
+		// Print "success" message line in green.
+		message.Successln("✅", "Name received!")
 	}
 
 	// Print horizontal ruler.
@@ -173,27 +207,27 @@ func main() {
 }
 ```
 
-### Example Output
+#### Example Output
 
 Results of running above code with `go run main.go` and various flags:
 
-#### No flags
+##### No flags
 ![default](/assets/screenshots/default.png)
 
-#### `--no-emoji`
+##### `--no-emoji`
 ![emoji disabled](/assets/screenshots/no-emoji.png)
 
 ... or with `NO_EMOJI` or `<APP_NAME>_NO_EMOJI` environment variables set (to something other than `false` or `0`).
 
-#### `--no-color`
+##### `--no-color`
 ![color disabled](/assets/screenshots/no-color.png)
 
 ... or with `NO_COLOR` or `<APP_NAME>_NO_COLOR` environment variables set (to something other than `false` or `0`).
 
-#### `--silent`
+##### `--silent`
 ![silent mode](/assets/screenshots/silent.png)
 
-#### `--verbose`
+##### `--verbose`
 ![verbose mode](/assets/screenshots/verbose.png)
 
 ... or with `VERBOSE` or `<APP_NAME>_VERBOSE` environment variables set (to something other than `false` or `0`).
@@ -202,15 +236,17 @@ Results of running above code with `go run main.go` and various flags:
 
 ## Emojis
 
-Unfortunately not all command-line environments are capable of rendering all emojis as they should be rendered. To ensure best possible compatibility with different systems and fonts:
+**Unfortunately** not all command-line environments are capable of rendering all emojis as they should be rendered. To ensure best possible compatibility with different systems and fonts:
 - Use non-gendered emojis
-- Default skintone emojis
+- Use default skintone emojis
 - Avoid complex group emojis such as 👨‍👩‍👧‍👧
 
 Sometimes using [`enescakir/emoji`](https://github.com/enescakir/emoji) can make getting the exactly right emoji easier:
 ```go
-emoji.Emoji(emoji.PersonFacepalming.String())
+emoji.Emoji(emoji.PersonFacepalming.Tone(emoji.Default))
 ```
+
+Of course you may use any emoji you wish but note that they may not render as expected in different systems and environments.
 
 <br/>
 
