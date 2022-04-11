@@ -77,58 +77,86 @@ go get github.com/aripalo/go-delightful
 
 ## Usage
 
+An example command-line application using `aripalo/go-delightful`:
 ```go
 package main
 
 import (
-  "github.com/aripalo/go-delightful"
+	"bufio"
+	"fmt"
+	"log"
+	"os"
+	"strings"
+
+	"github.com/aripalo/go-delightful"
+	"github.com/enescakir/emoji"
 )
 
 func main() {
 
-  message := delightful.New("my-app")
+	message := delightful.New("greet")
 
-  // Print a "banner" showing your app name and other (optional) info.
-  // Banner optional info only printed if in verbose mode.
-  message.Banner(delightful.BannerOptions{
-    Version: "v0.0.1",
-    Website: "example.com",
-    Command: "foo",
-    Extra:   "Some extra info, let's keep it short!",
-  })
+	// Print a "banner" showing your app name and other (optional) info.
+	// Banner optional info only printed if in verbose mode.
+	message.Banner(delightful.BannerOptions{
+		Version: "v0.0.1",
+		Website: "http://example.com",
+		Command: "hello",
+		Extra:   "Some extra info, let's keep it short!",
+	})
 
-  // Print "title" message in purple.
-  message.Title("🔥", "hello world")
+	// Print "title" message in purple.
+	message.Title("🔥", "This is going to be lit!")
 
-  // Print "debug" message in dark gray.
-  // Only printed if in verbose mode.
-  message.Debug("⚙️", "This is only visible if in verbose mode")
+	// Print "debug" message in dark gray.
+	// Only printed if in verbose mode.
+	message.Debug("⚙️", "This is only visible if in verbose mode")
 
-  // Print "info" message in gray.
-  message.Info("", "FYI")// passing empty string for emoji disables it
+	// Print "info" message in gray.
+  // Passing empty string for emoji disables it.
+	message.Info("", "FYI: Just something for for your information.")
 
-  // Print "prompt" message in cyan.
-  // Does not actually read input, only shows the "question".
-  message.Prompt("🖋️", "please input maybe:")
+	// Print "prompt" message in cyan.
+	// Does not actually read input, only shows the "question".
+	message.Prompt("🖋️", "Input your name:")
 
-  // Print "success" message in green.
-  message.Success("💪", "nicely done")
+	// Actually query the name via stdin
+	reader := bufio.NewReader(os.Stdin)
+	value, err := reader.ReadString('\n')
+	if err != nil {
+		// Print "failure" message in red.
+		message.Failure("❌", "galaxies exploded")
+		log.Fatal(err)
+	}
+	name := strings.TrimSpace(value)
 
-  // Print "warning" message in yellow.
-  message.Warning("⚠️", "something didn't go as planned, but it might be okay...")
+	if strings.ContainsRune(name, '💩') {
 
-  // Print "failure" message in red.
-  message.Failure("❌", "galaxies exploded")
+		// Unfortunately many environments print gendered/toned emojis incorrectly
+		// so you might want to use github.com/enescakir/emoji to assign "neutral" emoji
+		facepalm := emoji.Emoji(emoji.PersonFacepalming.String())
 
-  // Print horizontal ruler.
-  // Visible only on verbose mode.
-  message.HorizontalRuler()
+		// Print "warning" message in yellow.
+		message.Warning(facepalm, "Really? Your name has a poop emoji? You're being a wise-ass...")
+	} else {
+		// Print "success" message in green.
+		message.Success("✅", "Name received!")
+	}
 
-  // Finally you often should print some actual command output into standard
-  // output stream.
-  fmt.Println("My actual output to stdout")
+	// Print horizontal ruler.
+	// Useful for visually separating the informational messages above from
+	// actual command output.
+	// Visible only on verbose mode.
+	message.HorizontalRuler()
+
+	// Finally you often should print some actual command output into standard
+	// output stream.
+	fmt.Printf("Hello %s!\n", name)
 }
 ```
+
+Now running `VERBOSE=true go run main.go` yields to following:
+![Example Output](/assets/example-output.png)
 
 
 ## Emojis
