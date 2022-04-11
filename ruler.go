@@ -2,7 +2,7 @@ package delightful
 
 import (
 	"github.com/aripalo/go-delightful/internal/colors"
-	"github.com/aripalo/go-delightful/ruler"
+	"github.com/aripalo/go-delightful/internal/ruler"
 )
 
 // printHr is the internal implementation of printing horizontal rulers
