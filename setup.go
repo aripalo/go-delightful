@@ -44,7 +44,7 @@ func New(appName string) Message {
 		colorMode:   colorMode,
 		emojiMode:   allowEmoji(appName),
 		verboseMode: verboseMode,
-		silentMode:  !verboseMode,
+		silentMode:  false,
 		target:      target,
 	}
 }
@@ -58,6 +58,7 @@ func (m *Message) SetColorMode(colorMode bool) {
 		m.colorMode = colorMode
 		if !m.colorMode {
 			color.Disable()
+			m.emojiMode = false
 		}
 	}
 }
