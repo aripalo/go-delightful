@@ -58,8 +58,8 @@ Messages are written into standard error stream (`stderr`) to avoid polluting th
   - `<APP-NAME>_NO_COLOR` (to something other than `false` or `0`)
   - `TERM=dumb`
 - Allows user to control verbosity by configuring environment variables:
-  - `VERBOSITY` (to something other than `false` or `0`)
-  - `<APP-NAME>_VERBOSITY` (to something other than `false` or `0`)
+  - `VERBOSE` (to something other than `false` or `0`)
+  - `<APP-NAME>_VERBOSE` (to something other than `false` or `0`)
 
 <br/>
 
