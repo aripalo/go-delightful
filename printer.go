@@ -1,75 +1,56 @@
 package delightful
 
 import (
-	"fmt"
-	"unicode/utf8"
-
 	"github.com/aripalo/go-delightful/colors"
+	"github.com/aripalo/go-delightful/internal/emojiprefix"
 	"github.com/enescakir/emoji"
 )
 
-func emojiPad(em emoji.Emoji) string {
-	runeCount := utf8.RuneCountInString(string(em))
-	padding := 3
-	if runeCount%2 != 0 {
-		padding = 1
-	}
-	return fmt.Sprintf("%-*s", padding, string(em))
-}
-
-func (m *Message) formatWithEmoji(em emoji.Emoji, rendered string) string {
-	// empty emoji means we'll skip it
-	if string(em) == "" {
-		return rendered
-	}
-
-	// format the string with emoji prefix if emoji mode is on
-	if m.emojiMode {
-		return fmt.Sprintf("%s %s", emojiPad(em), rendered)
-	}
-
-	// otherwise just return the string
-	return rendered
-}
-
-func (m *Message) Title(em emoji.Emoji, rendered string) {
+func (m *Message) Title(prefix emoji.Emoji, rendered string) {
 	if m.silentMode {
 		return
 	}
-	colors.Title.Println(m.formatWithEmoji(em, rendered))
+	formatted := emojiprefix.Format(m.emojiMode, prefix, rendered)
+	colors.Title.Println(formatted)
 }
 
-func (m *Message) Debug(em emoji.Emoji, rendered string) {
+func (m *Message) Debug(prefix emoji.Emoji, rendered string) {
 	if m.verboseMode {
-		colors.Debug.Println(m.formatWithEmoji(em, rendered))
+		formatted := emojiprefix.Format(m.emojiMode, prefix, rendered)
+		colors.Debug.Println(formatted)
 	}
 }
 
-func (m *Message) Info(em emoji.Emoji, rendered string) {
+func (m *Message) Info(prefix emoji.Emoji, rendered string) {
 	if m.silentMode {
 		return
 	}
-	colors.Info.Println(m.formatWithEmoji(em, rendered))
+	formatted := emojiprefix.Format(m.emojiMode, prefix, rendered)
+	colors.Info.Println(formatted)
 }
 
-func (m *Message) Prompt(em emoji.Emoji, rendered string) {
-	colors.Prompt.Println(m.formatWithEmoji(em, rendered))
+func (m *Message) Prompt(prefix emoji.Emoji, rendered string) {
+	formatted := emojiprefix.Format(m.emojiMode, prefix, rendered)
+	colors.Prompt.Println(formatted)
 }
 
-func (m *Message) Success(em emoji.Emoji, rendered string) {
+func (m *Message) Success(prefix emoji.Emoji, rendered string) {
 	if m.silentMode {
 		return
 	}
-	colors.Success.Println(m.formatWithEmoji(em, rendered))
+	formatted := emojiprefix.Format(m.emojiMode, prefix, rendered)
+	colors.Success.Println(formatted)
 }
 
-func (m *Message) Warning(em emoji.Emoji, rendered string) {
+func (m *Message) Warning(prefix emoji.Emoji, rendered string) {
 	if m.silentMode {
 		return
 	}
-	colors.Warning.Println(m.formatWithEmoji(em, rendered))
+	formatted := emojiprefix.Format(m.emojiMode, prefix, rendered)
+	colors.Warning.Println(formatted)
 }
 
-func (m *Message) Failure(em emoji.Emoji, rendered string) {
-	colors.Failure.Println(m.formatWithEmoji(em, rendered))
+func (m *Message) Failure(prefix emoji.Emoji, rendered string) {
+	formatted := emojiprefix.Format(m.emojiMode, prefix, rendered)
+	colors.Failure.Println(formatted)
 }
