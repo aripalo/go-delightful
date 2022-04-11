@@ -1,34 +1,31 @@
 package ruler
 
 import (
-	"errors"
-
 	"golang.org/x/term"
 )
 
-func getWidth() (int, error) {
+// getWidth returns the terminal column count or a fallback value
+func getWidth(fallback int) int {
 	if term.IsTerminal(0) {
 		width, _, err := term.GetSize(0)
-		if err != nil {
-			return 0, err
+		if err == nil {
+			return width
 		}
-		return width, nil
-	} else {
-		return 0, errors.New("Not a terminal")
 	}
+	return fallback
 }
 
-func Generate(char string) string {
-	width, err := getWidth()
-
-	if err != nil || width == 0 {
-		width = 16
-	}
-
+// repeat given character times count
+func repeat(char string, count int) string {
 	ruler := ""
-	for i := 0; i < width; i++ {
+	for i := 0; i < count; i++ {
 		ruler += char
 	}
-
 	return ruler
+}
+
+// Generate a horizontal ruler.
+func Generate(char string) string {
+	width := getWidth(16)
+	return repeat("=", width)
 }
