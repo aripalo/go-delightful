@@ -77,7 +77,7 @@ go get github.com/aripalo/go-delightful
 
 ## Usage
 
-### Basic usage
+### Basics
 
 Here are some of the basic methods:
 ```go
